@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+</head>
+<body>
+    <h1>Enter Player Names</h1>
+    <form method="post">
+        {% for i in range(num_players) %}
+        <label for="player{{ i+1 }}">Player {{ i+1 }}:</label>
+        <input type="text" id="player{{ i+1 }}" name="player{{ i+1 }}" required><br>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
