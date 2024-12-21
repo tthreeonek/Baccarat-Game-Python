@@ -4,10 +4,13 @@ ifeq ($(OS),Windows_NT)
 else
     PYTHON := python3
 endif
+
+# Переменные для Flask и тестов
 FLASK_APP := web/app.py
+TEST_DIR := tests
 
 # Цели
-.PHONY: all clean run-cli run-web test
+.PHONY: all clean run-cli run-web test install
 
 all: run-cli
 
@@ -17,11 +20,12 @@ run-cli:
 
 # Запуск веб-версии
 run-web:
-	$(PYTHON) $(FLASK_APP)
+	$(PYTHON) -m flask --app $(FLASK_APP) run
 
 # Очистка кеша и временных файлов
 clean:
 	rm -rf __pycache__
+	rm -rf $(TEST_DIR)/__pycache__
 	rm -rf web/__pycache__
 	rm -rf web/static/CACHE
 	rm -rf web/templates/*.html~
@@ -32,4 +36,8 @@ install:
 
 # Тестирование
 test:
-	$(PYTHON) -m unittest tests.test_baccarat
+	$(PYTHON) -m unittest discover -s $(TEST_DIR)
+
+# Запуск тестов с подробным выводом
+test-verbose:
+	$(PYTHON) -m unittest discover -s $(TEST_DIR) -v

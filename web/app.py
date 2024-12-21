@@ -5,8 +5,8 @@ from flask import Flask, render_template, request, redirect, url_for
 # Добавляем путь к основной директории проекта в sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Импортируем функции и переменные из baccarat.py
-from baccarat import deal_cards, calculate_score, determine_winner, M, F1, F, G, B, C, V, Q
+# Импортируем функции и переменные из game_logic.py
+from game_logic import deal_cards, calculate_score, determine_winner, M, F1, F, G, B, C, V, Q
 
 app = Flask(__name__)
 
